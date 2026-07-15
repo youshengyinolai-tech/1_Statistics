@@ -1,0 +1,451 @@
+/* ===== カラーテーマ（目に優しい配色・ライト/ダーク対応） ===== */
+:root {
+  --bg: #f6f3ec;
+  --fg: #33302a;
+  --card-bg: #fffdf8;
+  --border: #ddd5c2;
+  --accent: #4d6f8a;
+  --accent-fg: #ffffff;
+  --accent-soft: #e7eef3;
+  --muted: #8a8272;
+  --correct-bg: #e6f2e3;
+  --correct-border: #5a9a56;
+  --wrong-bg: #f6e6e2;
+  --wrong-border: #b96a52;
+  --code-bg: #eee8d8;
+  --shadow: rgba(60, 50, 30, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #21201c;
+    --fg: #e8e3d6;
+    --card-bg: #2b2a25;
+    --border: #47443b;
+    --accent: #8db3d1;
+    --accent-fg: #1c2a33;
+    --accent-soft: #33404a;
+    --muted: #a29c8c;
+    --correct-bg: #263424;
+    --correct-border: #6fae68;
+    --wrong-bg: #3a2b26;
+    --wrong-border: #c17f66;
+    --code-bg: #3a3830;
+    --shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #21201c;
+  --fg: #e8e3d6;
+  --card-bg: #2b2a25;
+  --border: #47443b;
+  --accent: #8db3d1;
+  --accent-fg: #1c2a33;
+  --accent-soft: #33404a;
+  --muted: #a29c8c;
+  --correct-bg: #263424;
+  --correct-border: #6fae68;
+  --wrong-bg: #3a2b26;
+  --wrong-border: #c17f66;
+  --code-bg: #3a3830;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f3ec;
+  --fg: #33302a;
+  --card-bg: #fffdf8;
+  --border: #ddd5c2;
+  --accent: #4d6f8a;
+  --accent-fg: #ffffff;
+  --accent-soft: #e7eef3;
+  --muted: #8a8272;
+  --correct-bg: #e6f2e3;
+  --correct-border: #5a9a56;
+  --wrong-bg: #f6e6e2;
+  --wrong-border: #b96a52;
+  --code-bg: #eee8d8;
+  --shadow: rgba(60, 50, 30, 0.08);
+}
+
+/* ===== 基本レイアウト ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1.2rem 3rem;
+  line-height: 1.85;
+  font-size: 17px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+h3 {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* ダーク/ライト切り替えボタン */
+#theme-toggle-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  border-radius: 50%;
+  width: 2.6rem;
+  height: 2.6rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.setup-section {
+  margin: 1.4rem 0;
+}
+
+.setup-section label {
+  display: inline-block;
+  margin-right: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+
+#resume-banner {
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+}
+
+#resume-banner p {
+  margin: 0 0 0.6rem;
+}
+
+/* ===== 問題カード ===== */
+#question-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.4rem 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 2px 10px var(--shadow);
+}
+
+#q-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+
+#q-context {
+  font-family: "Klee One", "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 1.2rem;
+  line-height: 2;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.01em;
+}
+
+.blank {
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 0 0.15em;
+}
+
+#answer-input {
+  width: 100%;
+  font-size: 1.05rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+#answer-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+#controls {
+  margin-top: 1rem;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--fg);
+  font-family: inherit;
+}
+
+#start-btn, #check-btn, #dnd-next-btn, #resume-btn {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+}
+
+#reveal-area {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+}
+
+.user-answer {
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.correct-label {
+  font-size: 1.1rem;
+}
+
+.correct-label code,
+#dnd-feedback code {
+  background: var(--code-bg);
+  padding: 0.15rem 0.4rem;
+  border-radius: 5px;
+  font-family: "Klee One", "Hiragino Sans", sans-serif;
+  font-size: 1.05em;
+}
+
+.auto-hint {
+  color: var(--correct-border);
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* 解説 */
+.explanation {
+  margin-top: 0.8rem;
+  padding: 0.7rem 0.9rem;
+  background: var(--accent-soft);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.explanation-label {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--accent);
+  margin-right: 0.5em;
+}
+
+#self-grade {
+  margin-top: 1rem;
+}
+
+.grade-btn.correct {
+  background: var(--correct-bg);
+  border-color: var(--correct-border);
+}
+
+.grade-btn.wrong {
+  background: var(--wrong-bg);
+  border-color: var(--wrong-border);
+}
+
+#progress-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+#result-screen {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ===== ドラッグ＆ドロップモード ===== */
+.dnd-dropzone {
+  min-height: 3.2rem;
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.9rem;
+  color: var(--muted);
+  font-size: 1rem;
+  font-family: "Klee One", "Hiragino Sans", sans-serif;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.dnd-dropzone.dragover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.dnd-dropzone.filled {
+  font-weight: 600;
+  color: var(--fg);
+  font-size: 1.15rem;
+}
+
+.dnd-dropzone.filled.correct {
+  background: var(--correct-bg);
+  border-color: var(--correct-border);
+  border-style: solid;
+}
+
+.dnd-dropzone.filled.wrong {
+  background: var(--wrong-bg);
+  border-color: var(--wrong-border);
+  border-style: solid;
+}
+
+#dnd-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+.dnd-chip {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+  background: var(--bg);
+  cursor: grab;
+  user-select: none;
+  font-size: 1.05rem;
+  font-family: "Klee One", "Hiragino Sans", sans-serif;
+}
+
+.dnd-chip:active {
+  cursor: grabbing;
+}
+
+.dnd-chip.disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.dnd-chip.reveal-correct {
+  border-color: var(--correct-border);
+  background: var(--correct-bg);
+  opacity: 1;
+}
+
+#dnd-feedback {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+#dnd-feedback .ok {
+  color: var(--correct-border);
+}
+
+#dnd-feedback .ng {
+  color: var(--wrong-border);
+}
+
+#dnd-next-btn {
+  margin-top: 1.2rem;
+}
+
+/* ===== 数学表記（分数） ===== */
+.frac {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  margin: 0 0.2em;
+  line-height: 1.25;
+}
+
+.frac .num {
+  border-bottom: 1.5px solid currentColor;
+  padding: 0 0.3em 0.12em;
+}
+
+.frac .den {
+  padding: 0.12em 0.3em 0;
+}
+
+/* ===== 数学表記（lim・Σ・Π・∪・∩ など「記号の上下」に範囲を書く表記） ===== */
+.opstack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 1.05;
+  margin: 0 0.2em;
+}
+
+.opstack .op-symbol {
+  font-family: "Segoe UI Symbol", "Hiragino Sans", "Yu Gothic", sans-serif;
+  line-height: 1.1;
+}
+
+.opstack.big .op-symbol {
+  font-size: 1.4em;
+  line-height: 1.1;
+}
+
+.opstack .op-sup,
+.opstack .op-sub {
+  font-size: 0.62em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.opstack .op-sup {
+  margin-bottom: 0.08em;
+}
+
+.opstack .op-sub {
+  margin-top: 0.08em;
+}
+
+sub, sup {
+  font-family: "Klee One", "Hiragino Sans", sans-serif;
+}
+
+/* ===== 成績履歴 ===== */
+#history-list {
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+}
+
+.history-row {
+  display: flex;
+  gap: 1rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.history-date {
+  color: var(--muted);
+  min-width: 5.5em;
+}
+
+.history-score {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+.history-empty {
+  color: var(--muted);
+}

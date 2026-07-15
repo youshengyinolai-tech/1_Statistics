@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>数理統計 穴埋めクイズ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button id="theme-toggle-btn" aria-label="ダーク／ライト表示を切り替え">🌙</button>
+
+<div id="setup-screen">
+  <h1>数理統計 穴埋めクイズ</h1>
+
+  <div id="resume-banner" class="setup-section" style="display:none">
+    <p>前回の続きがあります：<span id="resume-info"></span></p>
+    <button id="resume-btn">続きから再開</button>
+    <button id="discard-progress-btn">破棄して新しく始める</button>
+  </div>
+
+  <div class="setup-section">
+    <h3>出題モード</h3>
+    <label><input type="radio" name="mode" value="type" checked> 入力モード（自己採点）</label>
+    <label><input type="radio" name="mode" value="dnd"> ドラッグ＆ドロップモード（選択式）</label>
+  </div>
+
+  <div class="setup-section">
+    <h3>出題範囲</h3>
+    <label><input type="radio" name="group" value="all" checked> すべて（第1〜11回）</label>
+    <label><input type="radio" name="group" value="g1"> 第1〜8回</label>
+    <label><input type="radio" name="group" value="g2"> 第9〜11回</label>
+  </div>
+
+  <button id="start-btn">開始</button>
+  <p id="setup-info"></p>
+
+  <div class="setup-section">
+    <h3>これまでの成績（保存された履歴）</h3>
+    <div id="history-list"></div>
+    <button id="clear-history-btn">履歴を消す</button>
+  </div>
+</div>
+
+<div id="quiz-screen" style="display:none">
+  <div id="progress-bar">
+    <span id="progress-text"></span>
+    <span id="score-text"></span>
+  </div>
+
+  <div id="question-card">
+    <div id="q-meta"></div>
+    <div id="q-context"></div>
+
+    <div id="type-mode-area">
+      <input type="text" id="answer-input" autocomplete="off" placeholder="答えを入力...">
+      <div id="controls">
+        <button id="check-btn">解答を確認</button>
+      </div>
+
+      <div id="reveal-area" style="display:none">
+        <div id="correct-answer"></div>
+        <div id="self-grade">
+          <span>自己採点：</span>
+          <button id="mark-correct" class="grade-btn correct">○ 正解</button>
+          <button id="mark-wrong" class="grade-btn wrong">✕ 不正解</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="dnd-mode-area" style="display:none">
+      <div id="dnd-dropzone" class="dnd-dropzone">ここに正しい答えをドラッグ＆ドロップ（またはクリックで選択）</div>
+      <div id="dnd-choices"></div>
+      <div id="dnd-feedback"></div>
+      <button id="dnd-next-btn" style="display:none">次へ</button>
+    </div>
+  </div>
+</div>
+
+<div id="result-screen" style="display:none">
+  <h2>結果</h2>
+  <p id="result-text"></p>
+  <button id="retry-btn">もう一度</button>
+</div>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
