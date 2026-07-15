@@ -512,18 +512,19 @@ const QUESTIONS = [
     explanation: "Xの密度関数に，逆関数の微分（ヤコビアン）の絶対値を掛けるとYの密度になる．",
   },
   {
-    round: 8, title: "第8回：たたみこみ", label: "(え)",
-    context: "X, Yが独立な連続型確率変数のとき，S＝X＋Yの密度関数は f<sub>S</sub>(s) ＝ ∫<sub>-∞</sub><sup>∞</sup> ___BLANK___ dx",
-    answers: ["f_X(x)f_Y(s-x)"], display: "f<sub>X</sub>(x)f<sub>Y</sub>(s－x)",
-    distractors: ["f<sub>X</sub>(s－x)f<sub>Y</sub>(x)", "f<sub>X</sub>(x)＋f<sub>Y</sub>(s－x)", "f<sub>X</sub>(x)f<sub>Y</sub>(x＋s)"],
-    explanation: "独立な2変数の和の密度は，f_Xとf_Yを「たたみこんだ」積分で求まる．",
-  },
-  {
-    round: 8, title: "第8回：たたみこみ", label: "(お)",
-    context: "こうして得られた関数f<sub>S</sub>をf<sub>X</sub>とf<sub>Y</sub>の ___BLANK___ という．",
-    answers: ["たたみこみ", "畳み込み"], display: "たたみこみ",
-    distractors: ["積率母関数", "周辺分布", "合成関数"],
-    explanation: "この積分演算そのものの名前．f_X＊f_Yとも表記される．",
+    round: 8, title: "第8回：たたみこみ", label: "(え)(お)",
+    context: "X, Yが独立な連続型確率変数のとき，S＝X＋Yの密度関数は f<sub>S</sub>(s) ＝ ∫<sub>-∞</sub><sup>∞</sup> ___BLANK0___ dx．こうして得られた関数f<sub>S</sub>をf<sub>X</sub>とf<sub>Y</sub>の ___BLANK1___ という．",
+    blanks: [
+      {
+        answers: ["f_X(x)f_Y(s-x)"], display: "f<sub>X</sub>(x)f<sub>Y</sub>(s－x)",
+        distractors: ["f<sub>X</sub>(s－x)f<sub>Y</sub>(x)", "f<sub>X</sub>(x)＋f<sub>Y</sub>(s－x)", "f<sub>X</sub>(x)f<sub>Y</sub>(x＋s)"],
+      },
+      {
+        answers: ["たたみこみ", "畳み込み"], display: "たたみこみ",
+        distractors: ["積率母関数", "周辺分布", "合成関数"],
+      },
+    ],
+    explanation: "独立な2変数の和の密度は，f_Xとf_Yを「たたみこんだ」積分（f_X＊f_Y）で求まる．この演算自体をたたみこみと呼ぶ．",
   },
 
   // ===== 第10回小テスト：積率・積率母関数 =====
