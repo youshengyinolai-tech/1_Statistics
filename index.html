@@ -33,6 +33,9 @@
     <label><input type="radio" name="group" value="all" checked> すべて（第1〜11回）</label>
     <label><input type="radio" name="group" value="g1"> 第1〜8回</label>
     <label><input type="radio" name="group" value="g2"> 第9〜11回</label>
+    <label><input type="radio" name="group" value="single"> 回ごとに選択：
+      <select id="round-select"></select>
+    </label>
   </div>
 
   <button id="start-btn">開始</button>
@@ -56,7 +59,6 @@
     <div id="q-context"></div>
 
     <div id="type-mode-area">
-      <input type="text" id="answer-input" autocomplete="off" placeholder="答えを入力...">
       <div id="controls">
         <button id="check-btn">解答を確認</button>
       </div>

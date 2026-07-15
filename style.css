@@ -167,19 +167,54 @@ h3 {
   padding: 0 0.15em;
 }
 
-#answer-input {
-  width: 100%;
-  font-size: 1.05rem;
-  padding: 0.6rem 0.7rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
-  color: var(--fg);
+.blank.filled {
+  border-bottom-style: solid;
+  border-radius: 4px;
+  padding: 0 0.3em;
 }
 
-#answer-input:focus {
+.blank.filled.correct {
+  color: var(--correct-border);
+  background: var(--correct-bg);
+  border-color: var(--correct-border);
+}
+
+.blank.filled.wrong {
+  color: var(--wrong-border);
+  background: var(--wrong-bg);
+  border-color: var(--wrong-border);
+}
+
+.inline-input {
+  font-family: "Klee One", "Hiragino Sans", sans-serif;
+  font-size: 1em;
+  width: 8em;
+  padding: 0.15em 0.4em;
+  border: none;
+  border-bottom: 2px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--fg);
+  border-radius: 4px 4px 0 0;
+}
+
+.inline-input:focus {
   outline: none;
-  border-color: var(--accent);
+  background: var(--card-bg);
+}
+
+.inline-input.input-maybe-correct {
+  border-color: var(--correct-border);
+  background: var(--correct-bg);
+}
+
+.inline-input.input-maybe-wrong {
+  border-color: var(--wrong-border);
+  background: var(--wrong-bg);
+}
+
+.user-answer-inline {
+  color: var(--muted);
+  font-size: 0.85em;
 }
 
 #controls {

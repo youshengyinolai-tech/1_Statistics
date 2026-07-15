@@ -69,7 +69,7 @@ const QUESTIONS = [
   },
   {
     round: 1, title: "第1回：標本空間と事象", label: "(き)",
-    context: "A∩B を ___BLANK___ という（(く)と合わせて2つの呼び方がある）．",
+    context: "A∩B を ___BLANK___ という．",
     answers: ["積事象"], display: "積事象",
     distractors: ["和事象", "差事象", "余事象"],
     explanation: "「AとBが同時に起こる」という事象．集合でいうA∩Bにあたる．",
@@ -187,23 +187,24 @@ const QUESTIONS = [
     explanation: "Bが起こる確率を，互いに排反な原因A_iで場合分けして足し合わせたもの．",
   },
   {
-    round: 3, title: "第3回：ベイズの定理", label: "(お)",
-    context: `P(A<sub>i</sub>|B) ＝ ${FRAC('___BLANK___', '(か)')} （ベイズの定理の分子部分）`,
-    answers: ["P(B|Ai)P(Ai)"], display: "P(B|A<sub>i</sub>)P(A<sub>i</sub>)",
-    distractors: ["P(A<sub>i</sub>|B)P(B)", "P(B)P(A<sub>i</sub>)", FRAC("P(A<sub>i</sub>)", "P(B)")],
-    explanation: "結果Bから原因A_iを逆算するベイズの定理の分子．「原因A_iのもとでBが起こる確率」×「A_iの事前確率」．",
-  },
-  {
-    round: 3, title: "第3回：ベイズの定理", label: "(か)",
-    context: `P(A<sub>i</sub>|B) ＝ ${FRAC('P(B|A<sub>i</sub>)P(A<sub>i</sub>)', '___BLANK___')} （ベイズの定理の分母部分）`,
-    answers: ["ΣjP(B|Aj)P(Aj)"],
-    display: `${BIGOP('Σ', 'j=1', '∞')}P(B|A<sub>j</sub>)P(A<sub>j</sub>)`,
-    distractors: [
-      "P(B)",
-      `${BIGOP('Π', 'j=1', '∞')}P(B|A<sub>j</sub>)P(A<sub>j</sub>)`,
-      `${BIGOP('Σ', 'j=1', '∞')}P(A<sub>j</sub>|B)P(B)`,
+    round: 3, title: "第3回：ベイズの定理", label: "(お)(か)",
+    context: `P(A<sub>i</sub>|B) ＝ ${FRAC('___BLANK0___', '___BLANK1___')} （ベイズの定理）`,
+    blanks: [
+      {
+        answers: ["P(B|Ai)P(Ai)"], display: "P(B|A<sub>i</sub>)P(A<sub>i</sub>)",
+        distractors: ["P(A<sub>i</sub>|B)P(B)", "P(B)P(A<sub>i</sub>)", FRAC("P(A<sub>i</sub>)", "P(B)")],
+      },
+      {
+        answers: ["ΣjP(B|Aj)P(Aj)"],
+        display: `${BIGOP('Σ', 'j=1', '∞')}P(B|A<sub>j</sub>)P(A<sub>j</sub>)`,
+        distractors: [
+          "P(B)",
+          `${BIGOP('Π', 'j=1', '∞')}P(B|A<sub>j</sub>)P(A<sub>j</sub>)`,
+          `${BIGOP('Σ', 'j=1', '∞')}P(A<sub>j</sub>|B)P(B)`,
+        ],
+      },
     ],
-    explanation: "分母は全確率の定理そのもの．すべての原因についてP(B|A_j)P(A_j)を足し合わせる．",
+    explanation: "分子は「原因A_iのもとでBが起こる確率」×「A_iの事前確率」．分母は全確率の定理そのもので，すべての原因についてP(B|A_j)P(A_j)を足し合わせる．",
   },
 
   // ===== 第4回小テスト：確率変数・分布関数 =====
@@ -222,17 +223,12 @@ const QUESTIONS = [
     explanation: "F_X(x)は「Xがx以下になる」という事象の確率．その事象を満たすωの条件がX(ω)≤x．",
   },
   {
-    round: 4, title: "第4回：分布関数の性質", label: "(う)",
-    context: "すべての x∈R に対して， ___BLANK___ ≤ F<sub>X</sub>(x) ≤ (え)",
-    answers: ["0"], display: "0",
-    distractors: ["－1", "－∞", "1"],
-    explanation: "F_X(x)は確率なので，必ず0以上1以下の範囲に収まる．",
-  },
-  {
-    round: 4, title: "第4回：分布関数の性質", label: "(え)",
-    context: "すべての x∈R に対して，0 ≤ F<sub>X</sub>(x) ≤ ___BLANK___",
-    answers: ["1"], display: "1",
-    distractors: ["0", "∞", "－1"],
+    round: 4, title: "第4回：分布関数の性質", label: "(う)(え)",
+    context: "すべての x∈R に対して， ___BLANK0___ ≤ F<sub>X</sub>(x) ≤ ___BLANK1___",
+    blanks: [
+      { answers: ["0"], display: "0", distractors: ["－1", "－∞", "1"] },
+      { answers: ["1"], display: "1", distractors: ["0", "∞", "－1"] },
+    ],
     explanation: "F_X(x)は確率なので，必ず0以上1以下の範囲に収まる．",
   },
   {
@@ -358,17 +354,12 @@ const QUESTIONS = [
     explanation: "XがxかつYがy以下になる確率を，x,yの関数として表したもの．",
   },
   {
-    round: 6, title: "第6回：結合分布関数の性質", label: "(い)",
-    context: "すべての (x,y)∈R² に対して，___BLANK___ ≤ F<sub>X,Y</sub>(x,y) ≤ (う)",
-    answers: ["0"], display: "0",
-    distractors: ["－1", "1", "－∞"],
-    explanation: "結合分布関数も確率なので，0以上1以下の値をとる．",
-  },
-  {
-    round: 6, title: "第6回：結合分布関数の性質", label: "(う)",
-    context: "すべての (x,y)∈R² に対して，0 ≤ F<sub>X,Y</sub>(x,y) ≤ ___BLANK___",
-    answers: ["1"], display: "1",
-    distractors: ["0", "∞", "2"],
+    round: 6, title: "第6回：結合分布関数の性質", label: "(い)(う)",
+    context: "すべての (x,y)∈R² に対して，___BLANK0___ ≤ F<sub>X,Y</sub>(x,y) ≤ ___BLANK1___",
+    blanks: [
+      { answers: ["0"], display: "0", distractors: ["－1", "1", "－∞"] },
+      { answers: ["1"], display: "1", distractors: ["0", "∞", "2"] },
+    ],
     explanation: "結合分布関数も確率なので，0以上1以下の値をとる．",
   },
   {
@@ -434,18 +425,19 @@ const QUESTIONS = [
     explanation: "Yの範囲を制限せず∞まで許すことで，Yを無視したXだけの分布関数が得られる．",
   },
   {
-    round: 6, title: "第6回：Xの周辺確率関数（離散型）", label: "(し)",
-    context: "離散型：Xの周辺確率関数は，f<sub>X</sub>(x) ＝ P( ___BLANK___ ) ＝ (す)",
-    answers: ["X=x"], display: "X＝x",
-    distractors: ["X≤x", "X＝x, Y＝y", "X＝x または Y＝y"],
-    explanation: "Yの値によらず，Xがxという値をとる事象を考えている．",
-  },
-  {
-    round: 6, title: "第6回：Xの周辺確率関数（離散型）", label: "(す)",
-    context: "離散型：Xの周辺確率関数は，f<sub>X</sub>(x) ＝ P(X=x) ＝ ___BLANK___",
-    answers: ["Σf_{X,Y}(x,y)"], display: `${BIGOP('Σ', 'y')} f<sub>X,Y</sub>(x,y)`,
-    distractors: ["∫f<sub>X,Y</sub>(x,y)dy", "f<sub>X,Y</sub>(x,y)", `${BIGOP('Σ', 'x,y')} f<sub>X,Y</sub>(x,y)`],
-    explanation: "Yの値を無視したいので，Yについてすべての場合の結合確率を足し合わせる．",
+    round: 6, title: "第6回：Xの周辺確率関数（離散型）", label: "(し)(す)",
+    context: "離散型：Xの周辺確率関数は，f<sub>X</sub>(x) ＝ P( ___BLANK0___ ) ＝ ___BLANK1___",
+    blanks: [
+      {
+        answers: ["X=x"], display: "X＝x",
+        distractors: ["X≤x", "X＝x, Y＝y", "X＝x または Y＝y"],
+      },
+      {
+        answers: ["Σf_{X,Y}(x,y)"], display: `${BIGOP('Σ', 'y')} f<sub>X,Y</sub>(x,y)`,
+        distractors: ["∫f<sub>X,Y</sub>(x,y)dy", "f<sub>X,Y</sub>(x,y)", `${BIGOP('Σ', 'x,y')} f<sub>X,Y</sub>(x,y)`],
+      },
+    ],
+    explanation: "Yの値によらずXがxとなる事象を考え，Yについてすべての場合の結合確率を足し合わせる．",
   },
   {
     round: 6, title: "第6回：Xの周辺確率密度関数（連続型）", label: "(せ)",
@@ -499,18 +491,13 @@ const QUESTIONS = [
 
   // ===== 第8回小テスト：確率変数変換・たたみこみ =====
   {
-    round: 8, title: "第8回：確率変数変換", label: "(あ)",
-    context: "関数hが区間(a,b)において ___BLANK___ で(い)ならば，Y＝h(X)の確率密度関数が定義できる．",
-    answers: ["単調"], display: "単調",
-    distractors: ["連続", "有界", "対称"],
-    explanation: "hが単調（増加か減少のどちらか一方）であることで，逆関数h⁻¹が一意に定まる．",
-  },
-  {
-    round: 8, title: "第8回：確率変数変換", label: "(い)",
-    context: "関数hが区間(a,b)において単調で ___BLANK___ ならば，Y＝h(X)の確率密度関数が定義できる．",
-    answers: ["微分可能"], display: "微分可能",
-    distractors: ["連続", "単調", "有界"],
-    explanation: "微分可能であることで，変換後の密度関数を計算する公式（ヤコビアン）が使える．",
+    round: 8, title: "第8回：確率変数変換", label: "(あ)(い)",
+    context: "関数hが区間(a,b)において ___BLANK0___ で ___BLANK1___ ならば，Y＝h(X)の確率密度関数が定義できる．",
+    blanks: [
+      { answers: ["単調"], display: "単調", distractors: ["連続", "有界", "対称"] },
+      { answers: ["微分可能"], display: "微分可能", distractors: ["連続", "単調", "有界"] },
+    ],
+    explanation: "hが単調（増加か減少のどちらか一方）で微分可能であれば，逆関数h⁻¹を使ってY=h(X)の密度関数を計算できる．",
   },
   {
     round: 8, title: "第8回：確率変数変換", label: "(う)",
@@ -584,18 +571,19 @@ const QUESTIONS = [
     explanation: "t=0を代入するとe^{0X}=1になるので，E(1)=1が常に成り立つ．",
   },
   {
-    round: 10, title: "第10回：積率母関数の性質", label: "(か)",
-    context: "積率母関数m<sub>X</sub>(t)がt＝0のまわりで存在する場合，E(X<sup>k</sup>) ＝ ___BLANK___",
-    answers: ["m_X^(k)(0)"], display: "m<sub>X</sub><sup>(k)</sup>(0)",
-    distractors: ["m<sub>X</sub>(k)", "m<sub>X</sub>′(0)<sup>k</sup>", "m<sub>X</sub>(0)<sup>k</sup>"],
-    explanation: "積率母関数をk回微分してt=0を代入すると，k次積率E(X^k)がそのまま得られる．",
-  },
-  {
-    round: 10, title: "第10回：積率母関数の性質", label: "(き)",
-    context: "特に，E(X) ＝ ___BLANK___",
-    answers: ["m_X'(0)"], display: "m<sub>X</sub>′(0)",
-    distractors: ["m<sub>X</sub>(0)", "m<sub>X</sub>″(0)", "m<sub>X</sub>(1)"],
-    explanation: "(か)でk=1とした場合．1回微分してt=0を代入すると平均E(X)が得られる．",
+    round: 10, title: "第10回：積率母関数の性質", label: "(か)(き)",
+    context: "積率母関数m<sub>X</sub>(t)がt＝0のまわりで存在する場合，E(X<sup>k</sup>) ＝ ___BLANK0___ ．特に，E(X) ＝ ___BLANK1___",
+    blanks: [
+      {
+        answers: ["m_X^(k)(0)"], display: "m<sub>X</sub><sup>(k)</sup>(0)",
+        distractors: ["m<sub>X</sub>(k)", "m<sub>X</sub>′(0)<sup>k</sup>", "m<sub>X</sub>(0)<sup>k</sup>"],
+      },
+      {
+        answers: ["m_X'(0)"], display: "m<sub>X</sub>′(0)",
+        distractors: ["m<sub>X</sub>(0)", "m<sub>X</sub>″(0)", "m<sub>X</sub>(1)"],
+      },
+    ],
+    explanation: "積率母関数をk回微分してt=0を代入するとk次積率E(X^k)が得られる．特にk=1とすれば，1回微分してt=0を代入した値が平均E(X)になる．",
   },
   {
     round: 10, title: "第10回：積率母関数の性質", label: "(く)",
